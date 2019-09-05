@@ -10,11 +10,14 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate {
+class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Press Return Key - Hide Keyboard Functionality
+        hideKeyboard()
         
 /* ---- Map View Functionality Start ---- */
         
@@ -42,14 +45,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     
-/* ---- Map View Functionality Start ---- */
+/* ---- Map View Current Location Functionality Start ---- */
 
     // View Declaration Start:
     
     @IBOutlet weak var PtoPMap: MKMapView!
     
     
-    // Variable Declaratio Start:
+    // Variable Declaration Start:
     
     var locationManager = CLLocationManager()
     
@@ -76,7 +79,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
      
      */
     
-/* ---- Map View Functionality End ---- */
+/* ---- Map View Current Location Functionality End ---- */
     
 /* ---- Location Is Disable Alert Message Functionality Start ---- */
     
@@ -100,6 +103,171 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
      */
     
 /* ---- Location Is Disable Alert Message Functionality End ---- */
+    
+    
+/* ---- Pick Up Location On Map View Functionality Start ---- */
+    
+    // Action View Declaration Start:
+    @IBAction func pickUpLocation(_ sender: Any) {
+        
+        // Ignoring User Activity
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        // Create the Search Request
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = pickUpLocation.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            
+            // End Ignoring User Activity
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            if response == nil {
+                
+                // To Pop up An Alert Message
+                self.locationDisableAlert(title: "Unable To Reach", message: "Please, Try Again")
+                
+            } else {
+                
+                // Remove Annotations
+                let annotations = self.PtoPMap.annotations
+                self.PtoPMap.removeAnnotations(annotations)
+                
+                if response != nil {
+                    
+                    let latitude = response?.boundingRegion.center.latitude
+                    let longitude = response?.boundingRegion.center.longitude
+                    
+                    // Create Annotation
+                    let createAnnotation = MKPointAnnotation()
+                    createAnnotation.title = self.pickUpLocation.text
+                    createAnnotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                    self.PtoPMap.addAnnotation(createAnnotation)
+                    
+                    //Zooming In On Annotation
+                    let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                    let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+                    let region = MKCoordinateRegion(center: coordinate, span: span)
+                    self.PtoPMap.setRegion(region, animated: true)
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    
+    
+    /*
+     // Resources:
+     
+     // 1. Basics : https://www.youtube.com/watch?v=GYzNsVFyDrU
+     
+     */
+    
+/* ---- Pick Up Location On Map View Functionality Start  ---- */
+
+/* ---- Posting Location On Map View Functionality Start  ---- */
+
+    // Action View Declaration Start:
+    @IBAction func postingLocation(_ sender: Any) {
+        
+        // Ignoring User Activity
+        UIApplication.shared.beginIgnoringInteractionEvents()
+        
+        // Create the Search Request
+        let searchRequest = MKLocalSearch.Request()
+        searchRequest.naturalLanguageQuery = postingLocation.text
+        
+        let activeSearch = MKLocalSearch(request: searchRequest)
+        activeSearch.start { (response, error) in
+            
+            // End Ignoring User Activity
+            UIApplication.shared.endIgnoringInteractionEvents()
+            
+            if response == nil {
+                
+                // To Pop up An Alert Message
+                self.locationDisableAlert(title: "Unable To Reach", message: "Please, Try Again")
+                
+            } else {
+                
+                // Remove Annotations
+                let annotations = self.PtoPMap.annotations
+                self.PtoPMap.removeAnnotations(annotations)
+                
+                if response != nil {
+                    
+                    let latitude = response?.boundingRegion.center.latitude
+                    let longitude = response?.boundingRegion.center.longitude
+                    
+                    // Create Annotation
+                    let createAnnotation = MKPointAnnotation()
+                    createAnnotation.title = self.postingLocation.text
+                    createAnnotation.coordinate = CLLocationCoordinate2DMake(latitude!, longitude!)
+                    self.PtoPMap.addAnnotation(createAnnotation)
+                    
+                    //Zooming In On Annotation
+                    let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude!, longitude!)
+                    let span = MKCoordinateSpan(latitudeDelta: 0.002, longitudeDelta: 0.002)
+                    let region = MKCoordinateRegion(center: coordinate, span: span)
+                    self.PtoPMap.setRegion(region, animated: true)
+                    
+                }
+                
+            }
+        }
+        
+    }
+    
+    /*
+     // Resources:
+     
+     // 1. Basics : https://www.youtube.com/watch?v=GYzNsVFyDrU
+     
+     */
+    
+/* ---- Posting Location On Map View Functionality End  ---- */
+    
+/* ---- Press Return Key - Hide Keyboard Functionality Start ---- */
+    
+    // UI Variables Start:
+   
+    @IBOutlet weak var pickUpLocation: UITextField!
+    @IBOutlet weak var postingLocation: UITextField!
+    
+    // Functions Start:
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // To Hide the Keyboard while press on Return Key. Definition:
+    func hideKeyboard(){
+        pickUpLocation.delegate = self
+        postingLocation.delegate = self
+    }
+    
+    // Functions End --
+    
+    // Override Functions Start:
+    
+    // When user touches the outside of the TextField, it will Hide
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
+    // Override Functions End --
+    
+    /*
+     // Rescources:
+     
+     1. Basics: https://www.youtube.com/watch?v=ahzvP8ulebk
+     */
+    
+/* ---- Press Return Key - Hide Keyboard Functionality End ---- */
     
     /*
     // MARK: - Navigation
