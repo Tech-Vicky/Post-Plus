@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="pgB-Vz-c1L">
-                                <rect key="frame" x="84" y="106" width="246" height="123"/>
+                                <rect key="frame" x="84" y="106" width="246" height="123.00000000000001"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="123" id="5Qe-QE-tjL"/>
                                     <constraint firstAttribute="width" constant="246" id="qxa-cQ-R7h"/>
@@ -341,7 +341,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="vIP-ye-G9i">
-                                <rect key="frame" x="57" y="114" width="300" height="110"/>
+                                <rect key="frame" x="57" y="114" width="300" height="110.00000000000001"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="LAN-mK-9HA"/>
                                     <constraint firstAttribute="height" constant="110" id="O88-VG-oA5"/>
@@ -703,7 +703,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="3fV-sY-KRe">
-                                <rect key="frame" x="20" y="74" width="67" height="71"/>
+                                <rect key="frame" x="20" y="74" width="67" height="71.000000000000014"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="6Wp-U7-we8"/>
                                     <constraint firstAttribute="width" constant="67" id="YEc-l8-C6E"/>
@@ -775,7 +775,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AppLogo" translatesAutoresizingMaskIntoConstraints="NO" id="gMZ-lx-VB0">
-                                <rect key="frame" x="57" y="89" width="300" height="110"/>
+                                <rect key="frame" x="57" y="89" width="300" height="110.00000000000001"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="110" id="PpR-2f-rRh"/>
                                     <constraint firstAttribute="width" constant="300" id="anP-tH-1Hs"/>
@@ -900,6 +900,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="AppLogo" width="400" height="400"/>
+        <image name="AppLogo" width="100" height="93.666664123535156"/>
     </resources>
 </document>
