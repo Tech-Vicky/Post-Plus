@@ -17,6 +17,7 @@
 		53C0ED982305C45E00FD5601 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0ED972305C45E00FD5601 /* ProfileViewController.swift */; };
 		53C0ED9A2305CE2B00FD5601 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C0ED992305CE2B00FD5601 /* HistoryViewController.swift */; };
 		53C1EE5023049F1800AD2E11 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C1EE4F23049F1800AD2E11 /* MapViewController.swift */; };
+		53F095022321929B00D65EB1 /* RecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F095012321929B00D65EB1 /* RecipientViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		53C0ED972305C45E00FD5601 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		53C0ED992305CE2B00FD5601 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		53C1EE4F23049F1800AD2E11 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		53F095012321929B00D65EB1 /* RecipientViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipientViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 				535B471022FDE652008A836B /* ViewController.swift */,
 				5328705423031BC80029F76D /* SignUpViewController.swift */,
 				5328705623031D750029F76D /* SelectItemViewController.swift */,
+				53F095012321929B00D65EB1 /* RecipientViewController.swift */,
 				53C1EE4F23049F1800AD2E11 /* MapViewController.swift */,
 				53C0ED972305C45E00FD5601 /* ProfileViewController.swift */,
 				53C0ED992305CE2B00FD5601 /* HistoryViewController.swift */,
@@ -152,6 +155,7 @@
 			files = (
 				53C0ED982305C45E00FD5601 /* ProfileViewController.swift in Sources */,
 				5328705523031BC80029F76D /* SignUpViewController.swift in Sources */,
+				53F095022321929B00D65EB1 /* RecipientViewController.swift in Sources */,
 				535B471122FDE652008A836B /* ViewController.swift in Sources */,
 				535B470F22FDE652008A836B /* AppDelegate.swift in Sources */,
 				53C1EE5023049F1800AD2E11 /* MapViewController.swift in Sources */,
