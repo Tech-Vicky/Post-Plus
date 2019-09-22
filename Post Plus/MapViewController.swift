@@ -10,8 +10,8 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate {
-
+class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFieldDelegate, MKLocalSearchCompleterDelegate, UISearchBarDelegate, UINavigationBarDelegate, UINavigationControllerDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -19,7 +19,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
         // Press Return Key - Hide Keyboard Functionality
         hideKeyboard()
         
-/* ---- Map View Functionality Start ---- */
+        // To Pass The Data To Location Search Controller
+        pickUpLocation.delegate = self
+        postingLocation.delegate = self
+        
+/* ---- Map View Current Location Functionality Start ---- */
         
         PtoPMap.showsUserLocation = true
         
@@ -30,7 +34,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
                 locationManager.requestWhenInUseAuthorization()
             }
             
-            locationManager.desiredAccuracy = 1.0
+            locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
             
@@ -40,20 +44,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
             locationDisableAlert(title: "Location Is Disabled", message: "Please, Turn On Your Location Services")
         }
         
-/* ---- Map View Functionality End ---- */
-        
+/* ---- Map View Current Location Functionality End ---- */
     }
-    
     
 /* ---- Map View Current Location Functionality Start ---- */
 
     // View Declaration Start:
-    
     @IBOutlet weak var PtoPMap: MKMapView!
-    
-    
+
     // Variable Declaration Start:
-    
     var locationManager = CLLocationManager()
     
     // Functions Implementation Start:
@@ -158,8 +157,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
         
     }
     
-    
-    
+
     /*
      // Resources:
      
@@ -167,7 +165,43 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
      
      */
     
-/* ---- Pick Up Location On Map View Functionality Start  ---- */
+/* ---- Pick Up Location On Map View Functionality End  ---- */
+    
+/* ---- Map View Search Location Functionality Start ---- */
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        
+        if textField.placeholder == pickUpLocation.placeholder {
+            performSegue(withIdentifier:"searchPickUp", sender: self)
+        }
+        if textField.placeholder == postingLocation.placeholder {
+            performSegue(withIdentifier:"searchPosting", sender: self)
+        }
+        
+        return false
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "searchPickUp" {
+            let searchLocation = segue.destination as! LocationSearchController
+            searchLocation.pickUpLocation = pickUpLocation.placeholder!
+        }
+        if segue.identifier == "searchPosting"{
+            let searchLocation = segue.destination as! LocationSearchController
+            searchLocation.postingLocation = postingLocation.placeholder!
+        }
+        
+    }
+    
+    /*
+     // Resources:
+     
+     // 1. Segue Basics : https://blog.apoorvmote.com/segue-when-tapped-on-textfield-pass-data-through-navigation-back-button-ios-swift/
+     
+     */
+    
+/* ---- Map View Search Location Functionality End ---- */
 
 /* ---- Posting Location On Map View Functionality Start  ---- */
 
@@ -278,5 +312,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, UITextFiel
         // Pass the selected object to the new view controller.
     }
     */
-    
 }
+
+
